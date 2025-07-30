@@ -16,7 +16,7 @@ class HomeScreen extends StatefulWidget {
 
 bool get _hasTrips => false; 
 
-void _onAddTrip(BuildContext context) {
+void onAddTrip(BuildContext context) {
   Navigator.push(
     context,
     MaterialPageRoute(builder: (_) => const CreateTripPage()),
@@ -45,7 +45,7 @@ void _onNavTap(int index) {
       ),
       builder: (_) => AddOptionsModal(
         hasTrips: _hasTrips,
-        onAddTrip: () => _onAddTrip(context),
+        onAddTrip: () => onAddTrip(context),
         onAddChallenge: _onAddChallenge,
       ),
     );

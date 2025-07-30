@@ -20,6 +20,21 @@ class TripListNotifier extends StateNotifier<List<Trip>> {
     state = [...state, newTrip];
   }
 
+  void updateTrip(int index, String name, String destination, DateTime start, DateTime end) {
+  state = [
+    for (int i = 0; i < state.length; i++)
+      if (i == index)
+        state[i].copyWith(
+          name: name,
+          destination: destination,
+          startDate: start,
+          endDate: end,
+        )
+      else
+        state[i]
+  ];
+}
+
   void removeTrip(String id) {
     state = state.where((t) => t.id != id).toList();
   }
@@ -28,3 +43,4 @@ class TripListNotifier extends StateNotifier<List<Trip>> {
     state = [];
   }
 }
+
