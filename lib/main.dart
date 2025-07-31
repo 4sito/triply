@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:hive_flutter/hive_flutter.dart';
+import 'package:triply/features/challenges/models/challenge_model.dart';
+import 'package:triply/features/trips/models/trip_model.dart';
 // import 'package:supabase_flutter/supabase_flutter.dart';
 import 'app.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -15,12 +18,11 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 */
 
 
-
-void main() {
-  runApp(
-    const ProviderScope(
-      child: TriplyApp(),
-    ),
-  );
+void main() async {
+  await Hive.initFlutter();
+  Hive.registerAdapter(TripAdapter());
+  Hive.registerAdapter(ChallengeAdapter());
+  await Hive.openBox<Trip>('tripsBox');
+  await Hive.openBox<Challenge>('challengesBox');
+  runApp(const ProviderScope(child: TriplyApp()));
 }
-

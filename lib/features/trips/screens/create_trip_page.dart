@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../controllers/trip_controller.dart';
@@ -52,40 +54,41 @@ class _CreateTripPageState extends ConsumerState<CreateTripPage> {
   }
 
   void _submit() {
-  if (nameController.text.isEmpty ||
-      destinationController.text.isEmpty ||
-      startDate == null ||
-      endDate == null) {
-    ScaffoldMessenger.of(context).showSnackBar(
-      const SnackBar(content: Text('All fields must be filled')),
-    );
-    return;
-  }
-
-  if (_formKey.currentState!.validate()) {
-    final notifier = ref.read(tripListProvider.notifier);
-
-    if (widget.tripIndex != null) {
-      notifier.updateTrip(
-        widget.tripIndex!,
-        nameController.text,
-        destinationController.text,
-        startDate!,
-        endDate!,
+    if (nameController.text.isEmpty ||
+        destinationController.text.isEmpty ||
+        startDate == null ||
+        endDate == null) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text('All fields must be filled')),
       );
-    } else {
-      notifier.addTrip(
-        nameController.text,
-        destinationController.text,
-        startDate!,
-        endDate!,
-      );
+      return;
     }
 
-    Navigator.pop(context);
-  }
-}
+    if (_formKey.currentState!.validate()) {
+      final notifier = ref.read(tripListProvider.notifier);
 
+      log("tripindex: ${widget.tripIndex}");
+      if (widget.tripIndex != null) {
+      final trip = ref.read(tripListProvider)[widget.tripIndex!];
+        notifier.updateTrip(
+          trip.id,
+          nameController.text,
+          destinationController.text,
+          startDate!,
+          endDate!,
+        );
+      } else {
+        notifier.addTrip(
+          nameController.text,
+          destinationController.text,
+          startDate!,
+          endDate!,
+        );
+      }
+
+      Navigator.pop(context);
+    }
+  }
 
   @override
   Widget build(BuildContext context) {

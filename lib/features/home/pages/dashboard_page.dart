@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'base_page.dart';
+import '../../../abstraction/base_page.dart';
 
 class DashboardPage extends StatelessWidget {
   const DashboardPage({super.key});
@@ -8,6 +8,8 @@ class DashboardPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return BasePage(
       title: 'Dashboard',
+      icon: Icons.home,
+      iconOutlined: Icons.home_outlined,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: const [

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'base_page.dart';
+import '../../../abstraction/base_page.dart';
 
 class ProfilePage extends StatelessWidget {
   const ProfilePage({super.key});
@@ -8,6 +8,8 @@ class ProfilePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return BasePage(
       title: 'Profile Page',
+      icon: Icons.person,
+      iconOutlined: Icons.person_outline,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: const [

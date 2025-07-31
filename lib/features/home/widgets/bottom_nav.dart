@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:triply/features/home/widgets/destination.dart';
+import 'package:triply/features/home/all_destinations.dart';
 
 class BottomNav extends StatelessWidget {
   final int currentIndex;
@@ -11,13 +11,7 @@ class BottomNav extends StatelessWidget {
     super.key,
   });
 
-final allDestinations = [
-  Destination(0, "Home", Icons.home, Icons.home_outlined),
-  Destination(1, "Trips", Icons.airplane_ticket, Icons.airplane_ticket_outlined),
-  Destination(2, "Add", Icons.add, Icons.add_circle_outline),
-  Destination(3, "Challenges", Icons.emoji_events, Icons.emoji_events_outlined),
-  Destination(4, "Profile", Icons.person, Icons.person_outline),
-];
+// final allDestinations = allDestinations;
 
 @override
 Widget build(BuildContext context) {
