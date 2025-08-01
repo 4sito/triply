@@ -13,7 +13,7 @@ abstract class HiveBackedEntityNotifier<T extends BaseEntity>
   }
 
   Future<void> _loadFromHive() async {
-    final box = await Hive.openBox<T>(hiveBoxKey);
+    final box = Hive.box<T>(hiveBoxKey);
     state = box.values.toList();
   }
 
@@ -30,7 +30,6 @@ abstract class HiveBackedEntityNotifier<T extends BaseEntity>
     log("state {$state} item: {$item}");
     _persistToHive();
   }
-
 
   void removeItemById(String id) {
     state = state.where((item) => item.id != id).toList();

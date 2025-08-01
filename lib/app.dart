@@ -13,8 +13,22 @@ ThemeData buildTheme(Color seedColor, Brightness brightness) {
   );
 }
 
-class TriplyApp extends StatelessWidget {
+class TriplyApp extends StatefulWidget {
   const TriplyApp({super.key});
+
+  @override
+  State<TriplyApp> createState() => _TriplyAppState();
+}
+
+  class _TriplyAppState extends State<TriplyApp> {
+  int selectedIndex = 0;
+
+  void onTabSelected(int index) {
+    setState(() {
+      selectedIndex = index;
+    });
+  }
+
 
   @override
   Widget build(BuildContext context) {
@@ -28,6 +42,7 @@ class TriplyApp extends StatelessWidget {
           if (seedColorAsync.isLoading || themeModeAsync.isLoading) {
             return const CircularProgressIndicator(); // or splash screen
           }
+
           final seedColor = seedColorAsync.value!;
           final themeMode = themeModeAsync.value!;
           return MaterialApp(
