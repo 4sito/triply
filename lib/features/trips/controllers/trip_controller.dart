@@ -49,7 +49,7 @@ class TripListNotifier extends HiveBackedEntityNotifier<Trip> {
     DateTime start,
     DateTime end,
   ) {
-    log("updating trip ${id}");
+    log("updating trip $id");
     updateItemById(
       id,
       (trip) => trip.copyWith(

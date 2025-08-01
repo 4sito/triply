@@ -22,9 +22,14 @@ class TriplyApp extends StatelessWidget {
     return ProviderScope(
       child: Consumer(
         builder: (context, ref, _) {
-          final seedColor = ref.watch(seedColorProvider);
-          final themeMode = ref.watch(themeModeProvider);
+          final seedColorAsync = ref.watch(seedColorProvider);
+          final themeModeAsync = ref.watch(themeModeProvider);
 
+          if (seedColorAsync.isLoading || themeModeAsync.isLoading) {
+            return const CircularProgressIndicator(); // or splash screen
+          }
+          final seedColor = seedColorAsync.value!;
+          final themeMode = themeModeAsync.value!;
           return MaterialApp(
             title: 'Triply',
             debugShowCheckedModeBanner: false,

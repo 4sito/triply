@@ -13,11 +13,21 @@ class ProfilePage extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final currentColor = ref.watch(seedColorProvider);
-    final setColor = ref.read(seedColorProvider.notifier);
+    final seedColorAsync = ref.watch(seedColorProvider);
+    final themeModeAsync = ref.watch(themeModeProvider);
 
-    final currentMode = ref.watch(themeModeProvider);
-    final setMode = ref.watch(themeModeProvider.notifier);
+    final setColor = ref.read(seedColorProvider.notifier);
+    final setMode = ref.read(themeModeProvider.notifier);
+
+    if (seedColorAsync.isLoading || themeModeAsync.isLoading) {
+      return const Center(child: CircularProgressIndicator());
+    }
+    if (seedColorAsync.hasError || themeModeAsync.hasError) {
+      return const Center(child: Text('Error loading preferences'));
+    }
+
+    final currentColor = seedColorAsync.value!;
+    final currentMode = themeModeAsync.value!;
 
     final brightness = Theme.of(context).brightness;
 
@@ -49,7 +59,7 @@ class ProfilePage extends ConsumerWidget {
               spacing: 12,
               children: colorOptions.map((color) {
                 return GestureDetector(
-                  onTap: () => setColor.state = color,
+                  onTap: () => setColor.setColor(color),
                   child: CircleAvatar(
                     backgroundColor: color,
                     radius: 24,
@@ -88,7 +98,7 @@ class ProfilePage extends ConsumerWidget {
                         : null,
                   ),
                   child: IconButton(
-                    onPressed: () => setMode.state = entry.key,
+                    onPressed: () => setMode.setThemeMode(entry.key),
                     icon: entry.value,
                     color: isSelected
                         ? Theme.of(context).colorScheme.primary

@@ -13,7 +13,7 @@ class TripPage extends ConsumerWidget {
     final trips = ref.watch(tripListProvider);
     // print("trips: $trips, trips is empty? ${trips.isEmpty}");
     final theme = Theme.of(context);
-    var pageBody;
+    Widget pageBody;
 
     if (trips.isEmpty) {
       pageBody = Column(

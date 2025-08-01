@@ -21,11 +21,6 @@ abstract class HiveBackedEntityNotifier<T extends BaseEntity>
     log("hive box: {$hiveBoxKey} state: {$state}");
     final box = Hive.box<T>(hiveBoxKey);
     await box.clear(); // replace all
-      for (var item in state) {
-    if (item is! T) {
-      throw Exception('Invalid type in state: expected $T but found ${item.runtimeType}');
-    }
-  }
 
     await box.addAll(state);
   }

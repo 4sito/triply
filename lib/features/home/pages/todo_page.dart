@@ -1,20 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import '../../trips/controllers/trip_controller.dart';
 import '../../../abstraction/base_page.dart';
-import '../../home/home_screen.dart';
-import 'dart:developer'; 
-import '../../trips/screens/create_trip_page.dart';
+import 'dart:developer';
 
 class TodoPage extends ConsumerWidget {
   const TodoPage({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final list = [];// ref.watch(tripListProvider);
+    final list = []; // ref.watch(tripListProvider);
     // print("trips: $trips, trips is empty? ${trips.isEmpty}");
 
-    var pageBody;
+    Widget pageBody;
 
     if (list.isEmpty) {
       pageBody = Column(
@@ -25,7 +22,8 @@ class TodoPage extends ConsumerWidget {
             children: [
               IconButton(
                 icon: Icon(Icons.list_alt, size: 64, color: Colors.grey),
-                onPressed: () => log("clicked add list") // onAddTrip(context)},
+                onPressed: () =>
+                    log("clicked add list"), // onAddTrip(context)},
               ),
               SizedBox(height: 16),
               Text('No lists added yet.', style: TextStyle(fontSize: 18)),
@@ -52,17 +50,22 @@ class TodoPage extends ConsumerWidget {
             ),
             onTap: () {
               log("clicked create list");
-            //   Navigator.push(
-            //     context,
-            //     // MaterialPageRoute(
-            //     //     ; //; log("clicked create list");//CreateTripPage(tripIndex: index),
-            //     // ),
-            //   );
-             },
+              //   Navigator.push(
+              //     context,
+              //     // MaterialPageRoute(
+              //     //     ; //; log("clicked create list");//CreateTripPage(tripIndex: index),
+              //     // ),
+              //   );
+            },
           );
         },
       );
     }
-    return BasePage(title: 'Your Lists', child: pageBody, icon: Icons.list_alt, iconOutlined: Icons.list_alt_outlined,);
+    return BasePage(
+      title: 'Your Lists',
+      icon: Icons.list_alt,
+      iconOutlined: Icons.list_alt_outlined,
+      child: pageBody,
+    );
   }
 }
