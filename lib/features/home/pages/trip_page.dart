@@ -63,7 +63,7 @@ class TripPage extends ConsumerWidget {
               '${trip.destination} • ${trip.startDate.toString().split(" ")[0]} → ${trip.endDate.toString().split(" ")[0]}\nNumber of challenges ${trip.challengeIds.length}',
             ),
             trailing: IconButton(
-              icon: Icon(Icons.delete, color: Colors.red),
+              icon: Icon(Icons.delete, color: theme.colorScheme.inverseSurface),
               onPressed: () {
                 // Handle delete logic here
                 trips.removeAt(index);

@@ -76,7 +76,7 @@ class ChallengesPage extends ConsumerWidget {
               ],
             ), // assuming optional `description`
             trailing: IconButton(
-              icon: Icon(Icons.delete, color: Colors.red),
+              icon: Icon(Icons.delete, color: theme.colorScheme.inverseSurface),
               onPressed: () {
                 ref
                     .read(challengeListProvider.notifier)
