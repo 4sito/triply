@@ -9,16 +9,11 @@ class HomeScreen extends StatefulWidget {
   State<HomeScreen> createState() => _HomeScreenState();
 }
 
-bool get _hasTrips => false; 
-
 void onAddTrip(BuildContext context) {
   Navigator.push(
     context,
     MaterialPageRoute(builder: (_) => const CreateTripPage()),
   );
-}
-void _onAddChallenge() {
-  debugPrint('Challenge creation flow');
 }
 
 class _HomeScreenState extends State<HomeScreen> {

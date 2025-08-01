@@ -1,11 +1,10 @@
-import 'dart:developer';
+
 
 import 'package:flutter/material.dart';
 import 'package:triply/core/theme_controller.dart';
 import '../../../abstraction/base_page.dart';
 
 // profile_page.dart
-import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class ProfilePage extends ConsumerWidget {

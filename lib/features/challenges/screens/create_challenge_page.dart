@@ -8,7 +8,7 @@ import 'package:triply/features/trips/controllers/trip_controller.dart';
 class CreateChallengePage extends ConsumerStatefulWidget {
   final int? challengeIndex;
 
-  const CreateChallengePage({Key? key, this.challengeIndex}) : super(key: key);
+  const CreateChallengePage({super.key, this.challengeIndex});
 
   @override
   ConsumerState<CreateChallengePage> createState() =>

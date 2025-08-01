@@ -1,6 +1,5 @@
 import 'package:hive/hive.dart';
 import 'package:triply/abstraction/base_entity.dart';
-import 'package:triply/features/challenges/models/challenge_model.dart';
 
 part 'trip_model.g.dart';
 
